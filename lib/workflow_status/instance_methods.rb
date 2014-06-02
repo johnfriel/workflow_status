@@ -8,4 +8,8 @@ module WorkflowStatus::InstanceMethods
   def published?
     workflow_status == :published
   end
+  
+  def unpublished?
+    workflow_status == :unpublished
+  end
 end

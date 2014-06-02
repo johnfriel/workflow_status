@@ -20,7 +20,7 @@ describe WorkflowStatus::InstanceMethods do
   end
   
   describe '#published?' do
-    it "checks if the workflow_status attr corresponds to the 'published' value" do
+    it "checks if workflow_status is :published" do
       obj1 = @class.new
       obj2 = @class.new
 
@@ -29,6 +29,19 @@ describe WorkflowStatus::InstanceMethods do
 
       obj1.published?.should be true
       obj2.published?.should be false
+    end
+  end
+  
+  describe '#unpublished?' do
+    it "checks if workflow_status is :unpublished" do
+      obj1 = @class.new
+      obj2 = @class.new
+
+      obj1.stub(:workflow_status) { :unpublished }
+      obj2.stub(:workflow_status) { 'bar' }
+
+      obj1.unpublished?.should be true
+      obj2.unpublished?.should be false
     end
   end
 end
