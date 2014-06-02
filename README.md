@@ -1,6 +1,16 @@
 # WorkflowStatus
 
-TODO: Write a gem description
+When building a content management system, it's often useful to model the stages a user goes through when working on a bit of content. Much like how a new feature is not immediately ready to be committed to a git repo, a user will often want to start working on a new page or product as 'draft' before she is ready to publish it to the live site. And its also often useful to give users a way to 'trash' certain items without actually deleting the records from the database.
+
+WorkflowStatus provides some convenient methods for modeling such a workflow with an ActiveRecord attribute called, unsurprisingly, 'workflow_status.' Imagine you have a Page model in your app. With workflow_status, you can call:
+
+```
+Page.published
+Page.first.published?
+Page.last.trashed?
+Page.unpublished
+etc.
+```
 
 ## Installation
 
@@ -18,7 +28,39 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create a migration to add 'workflow_status' to your model.
+
+```
+class AddWorkflowStatusToPage < ActiveRecord::Migration
+  def change
+    add_column :pages, :workflow_status, :integer, limit: 2, null: false, default: 0  
+  end
+end
+```
+
+
+Then add WorkflowStatus to your model:
+
+```
+class Page < ActiveRecord::Base
+
+  extend WorkflowStatus
+
+  # ...
+
+end
+```
+
+And then you can call, eg.:
+
+```
+Page.published
+Page.first.published?
+Page.last.trashed?
+Page.unpublished
+etc.
+```
+
 
 ## Contributing
 
