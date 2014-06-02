@@ -1,6 +1,6 @@
 # WorkflowStatus
 
-When building a content management system, it's often useful to model the stages a user goes through when working on a bit of content. Much like how a new feature is not immediately ready to be committed to a git repo, a user will often want to start working on a new page or product as a 'draft' before she is ready to publish it to a live site. And its also often useful to give users a way to 'trash' certain items without actually deleting the records from the database.
+When building a content management system, it's often useful to model the stages a user goes through when working on a bit of content. Much like how a new feature is not immediately ready to be committed to a git repo, a user will often want to start working on a new page or product as a 'draft' before she is ready to publish it to a live site. And it is also often useful to give users a way to 'trash' certain items without actually deleting the records from the database.
 
 WorkflowStatus provides some convenient methods for modeling such a workflow with an ActiveRecord attribute called, unsurprisingly, 'workflow_status.' Imagine you have a Page model in your app. With workflow_status, you can call:
 
