@@ -18,7 +18,31 @@ describe WorkflowStatus::InstanceMethods do
   it 'adds a method for setting workflow_status' do
     @obj.should respond_to(:'workflow_status=')
   end
-  
+ 
+  describe '#workflow_status' do
+    it "returns :published for an actual attr of 1" do
+      obj = @class.new
+      obj.stub(:read_attribute).with(:workflow_status) { 1 }
+   
+      obj.workflow_status.should be(:published)
+    end
+    
+    it "returns :unpublished for an actual attr of 0" do
+      obj = @class.new
+      obj.stub(:read_attribute).with(:workflow_status) { 0 }
+   
+      obj.workflow_status.should be(:unpublished)
+    end
+    
+    it "returns :trashed for an actual attr of 2" do
+      obj = @class.new
+      obj.stub(:read_attribute).with(:workflow_status) { 2 }
+   
+      obj.workflow_status.should be(:trashed)
+    end
+
+  end
+
   describe '#published?' do
     it "checks if workflow_status is :published" do
       obj1 = @class.new
