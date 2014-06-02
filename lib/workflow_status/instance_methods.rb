@@ -2,7 +2,7 @@ module WorkflowStatus::InstanceMethods
   
   def workflow_status
     code = read_attribute :workflow_status
-    [:unpublished, :published, :trashed][code]
+    workflow_status_map.invert.fetch(code)
   end
   
   def workflow_status=(status_symbol)
