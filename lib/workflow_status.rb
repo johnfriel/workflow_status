@@ -1,5 +1,7 @@
 require "workflow_status/version"
 
 module WorkflowStatus
-  # Your code goes here...
+  def workflow_statuses
+    [:unpublished, :published, :trashed]
+  end
 end
