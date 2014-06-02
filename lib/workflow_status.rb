@@ -1,6 +1,14 @@
 require "workflow_status/version"
+require "workflow_status/instance_methods"
 
 module WorkflowStatus
+  
+  class << self
+    def extended(extender)
+      extender.send :include, InstanceMethods
+    end
+  end
+  
   def workflow_statuses
     [:unpublished, :published, :trashed]
   end
