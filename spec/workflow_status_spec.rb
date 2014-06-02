@@ -38,4 +38,11 @@ describe WorkflowStatus do
     end
   end
 
+  describe '#status_options_for_select' do
+    it 'returns an array of options suitable for Rails form select helper' do
+      @klass.status_options_for_select.should include([:unpublished, 0])
+      @klass.status_options_for_select.should include([:published,   1])
+      @klass.status_options_for_select.should include([:trashed,     2])
+    end
+  end
 end

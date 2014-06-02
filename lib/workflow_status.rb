@@ -24,4 +24,14 @@ module WorkflowStatus
   def trashed
     where(workflow_status: 2)
   end
+
+
+  # for Rails form select helper
+  def status_options_for_select
+    [
+      [:unpublished, 0],
+      [:published,   1],
+      [:trashed,     2],
+    ]
+  end
 end
