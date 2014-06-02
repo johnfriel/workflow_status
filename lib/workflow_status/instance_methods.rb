@@ -6,12 +6,7 @@ module WorkflowStatus::InstanceMethods
   end
   
   def workflow_status=(status_symbol)
-    options = {
-      unpublished: 0,
-      published:   1,
-      trashed:     2
-    }
-    value = options.fetch(status_symbol)
+    value = workflow_status_map.fetch(status_symbol.to_sym)
     write_attribute :workflow_status, value
   end
 
@@ -25,5 +20,11 @@ module WorkflowStatus::InstanceMethods
   
   def trashed?
     workflow_status == :trashed
+  end
+
+  private
+
+  def workflow_status_map
+    WorkflowStatus::WORKFLOW_STATUS_MAP
   end
 end
