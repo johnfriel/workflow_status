@@ -14,7 +14,7 @@ describe WorkflowStatus::InstanceMethods do
     @obj.should respond_to(:workflow_status)
   end
   
-  skip 'adds a method for setting workflow_status' do
+  it 'adds a method for setting workflow_status' do
     @obj.should respond_to(:'workflow_status=')
   end
   
