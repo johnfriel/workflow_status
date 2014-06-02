@@ -7,6 +7,7 @@ describe WorkflowStatus::InstanceMethods do
       extend WorkflowStatus
     end
 
+    @class = DummyClass
     @obj = DummyClass.new
   end
 
@@ -18,20 +19,16 @@ describe WorkflowStatus::InstanceMethods do
     @obj.should respond_to(:'workflow_status=')
   end
   
-  skip '#published?' do
+  describe '#published?' do
     it "checks if the workflow_status attr corresponds to the 'published' value" do
-      class DummyClass
-        extend WorkflowStatus
-      end
+      obj1 = @class.new
+      obj2 = @class.new
 
-      obj1 = DummyClass.new
-      obj2 = DummyClass.new
-
-      obj1.stub(:workflow_status) { 1 }
+      obj1.stub(:workflow_status) { :published }
       obj2.stub(:workflow_status) { 'foo' }
 
-      obj1.published?.should be_true
-      obj2.published?.should be_false
+      obj1.published?.should be true
+      obj2.published?.should be false
     end
   end
 end
