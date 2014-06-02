@@ -12,4 +12,8 @@ module WorkflowStatus::InstanceMethods
   def unpublished?
     workflow_status == :unpublished
   end
+  
+  def trashed?
+    workflow_status == :trashed
+  end
 end

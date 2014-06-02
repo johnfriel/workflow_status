@@ -44,4 +44,17 @@ describe WorkflowStatus::InstanceMethods do
       obj2.unpublished?.should be false
     end
   end
+  
+  describe '#trashed?' do
+    it "checks if workflow_status is :trashed" do
+      obj1 = @class.new
+      obj2 = @class.new
+
+      obj1.stub(:workflow_status) { :trashed }
+      obj2.stub(:workflow_status) { 'quux' }
+
+      obj1.trashed?.should be true
+      obj2.trashed?.should be false
+    end
+  end
 end
