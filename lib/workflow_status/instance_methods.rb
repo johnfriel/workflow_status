@@ -6,7 +6,12 @@ module WorkflowStatus::InstanceMethods
   end
   
   def workflow_status=(status_symbol)
-    value = workflow_status_map.fetch(status_symbol.to_sym)
+    if [0, 1, 2, '0', '1', '2'].include? status_symbol
+      value = status_symbol.to_i
+    else
+      value = workflow_status_map.fetch(status_symbol.to_sym)
+    end
+    
     write_attribute :workflow_status, value
   end
 
