@@ -2,11 +2,14 @@ module WorkflowStatus::InstanceMethods
   
   def workflow_status
     code = read_attribute :workflow_status
+    
+    code = code.to_i if [nil, 0, 1, 2, '0', '1', '2'].include? code
+    
     workflow_status_map.invert.fetch(code)
   end
   
   def workflow_status=(status_symbol)
-    if [0, 1, 2, '0', '1', '2'].include? status_symbol
+    if [nil, 0, 1, 2, '0', '1', '2'].include? status_symbol
       value = status_symbol.to_i
     else
       value = workflow_status_map.fetch(status_symbol.to_sym)
